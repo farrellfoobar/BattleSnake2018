@@ -80,7 +80,7 @@ def findclosestfood(me,food):
     closestfood = findpointdistance(head,food['data'][0])
 
     for pieceoffood in food['data']:
-        if findpointdistance(head, pieceoffood) < findpointdistance(closestfood):
+        if findpointdistance(head, pieceoffood) < findpointdistance(head,closestfood):
             closestfood = pieceoffood
             print(closestfood['x'])
             print(closestfood['y'])
