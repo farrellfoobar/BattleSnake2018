@@ -73,18 +73,20 @@ def move():
         'taunt': taunt
     }
 
+
 def findclosestfood(me,food):
     """Returns coords of food piece that is closest to snake"""
     head = me[0]
-    closestfood = food[0]
+    closestfood = food[data][0]
 
-    for pieceoffood in food:
+    for pieceoffood in food[data]:
         if findpointdistance(head, pieceoffood) < findpointdistance(closestfood):
             closestfood = pieceoffood
             print(closestfood['x'])
             print(closestfood['y'])
 
     return closestfood
+
 
 def findpointdistance(a,b):
     xdiff = math.abs(a['x'] - b['x'])
