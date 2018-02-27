@@ -77,9 +77,9 @@ def move():
 def findclosestfood(me,food):
     """Returns coords of food piece that is closest to snake"""
     head = me[0]
-    closestfood = food[data][0]
+    closestfood = findpointdistance(head,food['data'][0])
 
-    for pieceoffood in food[data]:
+    for pieceoffood in food['data']:
         if findpointdistance(head, pieceoffood) < findpointdistance(closestfood):
             closestfood = pieceoffood
             print(closestfood['x'])
