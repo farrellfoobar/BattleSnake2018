@@ -1,6 +1,7 @@
 import bottle
 import os
 import random
+import math
 
 directions = ['up', 'down', 'left', 'right']
 
@@ -47,13 +48,14 @@ def move():
     snakes = data['snakes']
     height = data['height']
     width = data['width']
-    # food = data['food']
+    food = data['food']
 
     me = data['you']['body']['data']
 
     donthitsnakes(me[0], snakes)
     donthitwalls(me, width, height)
     donthittail(me)
+    findclosestfood(me,food)
 
     if adjacenttodanger(me[0], me, snakes, width, height):
         print('danger zone')
@@ -70,6 +72,27 @@ def move():
         'move': direction,
         'taunt': taunt
     }
+
+def findclosestfood(me,food):
+    """Returns coords of food piece that is closest to snake"""
+    head = me[0]
+    closestfood = food[0]
+
+    for pieceoffood in food:
+        if findpointdistance(head, pieceoffood) < findpointdistance(closestfood):
+            closestfood = pieceoffood
+            print(closestfood['x'])
+            print(closestfood['y'])
+
+    return closestfood
+
+def findpointdistance(a,b):
+    xdiff = math.abs(a['x'] - b['x'])
+    ydiff = math.abs(a['y'] - b['y'])
+
+    distance = math.sqrt(xdiff**2 + ydiff**2)
+
+    return distance
 
 
 # TODO This is still picking up non dangerous things as danger, and the diagonal stuff isn't working
