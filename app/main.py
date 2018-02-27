@@ -89,8 +89,8 @@ def findclosestfood(me,food):
 
 
 def findpointdistance(a,b):
-    xdiff = math.abs(a['x'] - b['x'])
-    ydiff = math.abs(a['y'] - b['y'])
+    xdiff = abs(a['x'] - b['x'])
+    ydiff = abs(a['y'] - b['y'])
 
     distance = math.sqrt(xdiff**2 + ydiff**2)
 
